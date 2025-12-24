@@ -128,7 +128,7 @@ const RealTimeAnalyzer = ({ onPrediction, onConnectionChange, disabled }) => {
           />
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1, flexDirection: { xs: 'column', sm: 'row' } }}>
           {!isConnected ? (
             <Button
               variant="contained"
@@ -139,7 +139,8 @@ const RealTimeAnalyzer = ({ onPrediction, onConnectionChange, disabled }) => {
                 background: 'linear-gradient(45deg, #30B4C2 30%, #4CAF50 90%)',
                 '&:hover': {
                   background: 'linear-gradient(45deg, #2A9BA8 30%, #45a049 90%)'
-                }
+                },
+                width: { xs: '100%', sm: 'auto' }
               }}
             >
               Connect
@@ -156,7 +157,8 @@ const RealTimeAnalyzer = ({ onPrediction, onConnectionChange, disabled }) => {
                 '&:hover': {
                   backgroundColor: 'rgba(244, 67, 54, 0.1)',
                   borderColor: '#f44336'
-                }
+                },
+                width: { xs: '100%', sm: 'auto' }
               }}
             >
               Disconnect
@@ -171,7 +173,8 @@ const RealTimeAnalyzer = ({ onPrediction, onConnectionChange, disabled }) => {
               background: 'linear-gradient(45deg, #FFA500 30%, #FF9800 90%)',
               '&:hover': {
                 background: 'linear-gradient(45deg, #E69500 30%, #F57C00 90%)'
-              }
+              },
+              width: { xs: '100%', sm: 'auto' }
             }}
           >
             Send Test

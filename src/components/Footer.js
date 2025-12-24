@@ -24,7 +24,7 @@ const Footer = () => {
       mt: 'auto'
     }}>
       <Container maxWidth="lg">
-        <Box sx={{ py: 6 }}>
+        <Box sx={{ py: { xs: 3, md: 6 } }}>
           <Grid container spacing={4}>
             {/* Logo and Description */}
             <Grid item xs={12} md={4}>

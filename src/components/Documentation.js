@@ -80,7 +80,7 @@ const Documentation = () => {
 
           {/* Quick Start */}
           <Paper sx={{
-            p: 4,
+            p: { xs: 2, md: 4 },
             mb: 4,
             background: 'rgba(22, 27, 34, 0.8)',
             backdropFilter: 'blur(10px)',
@@ -143,7 +143,8 @@ const Documentation = () => {
 
               <TableContainer component={Paper} sx={{
                 background: 'rgba(13, 17, 23, 0.5)',
-                border: '1px solid rgba(48, 180, 194, 0.2)'
+                border: '1px solid rgba(48, 180, 194, 0.2)',
+                overflowX: 'auto'
               }}>
                 <Table>
                   <TableHead>
@@ -375,7 +376,7 @@ print(results)`}
 
           {/* Troubleshooting */}
           <Paper sx={{
-            p: 4,
+            p: { xs: 2, md: 4 },
             background: 'rgba(22, 27, 34, 0.8)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(48, 180, 194, 0.2)'

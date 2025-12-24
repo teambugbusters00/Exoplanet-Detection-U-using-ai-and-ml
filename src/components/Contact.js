@@ -238,7 +238,7 @@ const Contact = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <Paper sx={{
-                  p: 4,
+                  p: { xs: 2, md: 4 },
                   background: 'rgba(22, 27, 34, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(48, 180, 194, 0.2)'

@@ -119,8 +119,9 @@ const Dashboard = () => {
                 '&:hover': {
                   background: 'linear-gradient(45deg, #2A9BA8 30%, #E69500 90%)'
                 },
-                px: 4,
-                py: 1.5
+                px: { xs: 2, sm: 4 },
+                py: 1.5,
+                width: { xs: '100%', sm: 'auto' }
               }}
             >
               Download Simple Dataset (20 candidates)
@@ -142,8 +143,9 @@ const Dashboard = () => {
                   backgroundColor: 'rgba(48, 180, 194, 0.1)',
                   borderColor: '#30B4C2'
                 },
-                px: 4,
-                py: 1.5
+                px: { xs: 2, sm: 4 },
+                py: 1.5,
+                width: { xs: '100%', sm: 'auto' }
               }}
             >
               Download Mixed Results (Positive + Negative)

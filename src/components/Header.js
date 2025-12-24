@@ -32,18 +32,21 @@ const Header = () => {
       borderBottom: '1px solid rgba(48, 180, 194, 0.2)'
     }}>
       <Toolbar>
-        <TravelExploreIcon sx={{ mr: 2, fontSize: 32, color: '#30B4C2' }} />
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+        <TravelExploreIcon sx={{ mr: { xs: 1, md: 2 }, fontSize: { xs: 28, md: 32 }, color: '#30B4C2' }} />
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Exoplanet AI Detection
         </Typography>
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+        <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 2, alignItems: 'center' }}>
           <Button
             component={Link}
             to="/"
             variant={location.pathname === '/' ? 'contained' : 'outlined'}
+            size="small"
             sx={{
               color: location.pathname === '/' ? '#30B4C2' : '#E6EDF3',
               borderColor: '#30B4C2',
+              fontSize: { md: '0.8rem', lg: '0.875rem' },
+              px: { md: 1.5, lg: 2 },
               '&:hover': {
                 backgroundColor: 'rgba(48, 180, 194, 0.1)',
                 borderColor: '#30B4C2'
@@ -56,9 +59,12 @@ const Header = () => {
             component={Link}
             to="/dashboard"
             variant={location.pathname === '/dashboard' ? 'contained' : 'outlined'}
+            size="small"
             sx={{
               color: location.pathname === '/dashboard' ? '#30B4C2' : '#E6EDF3',
               borderColor: '#30B4C2',
+              fontSize: { md: '0.8rem', lg: '0.875rem' },
+              px: { md: 1.5, lg: 2 },
               '&:hover': {
                 backgroundColor: 'rgba(48, 180, 194, 0.1)',
                 borderColor: '#30B4C2'
@@ -71,9 +77,12 @@ const Header = () => {
             component={Link}
             to="/docs"
             variant={location.pathname === '/docs' ? 'contained' : 'outlined'}
+            size="small"
             sx={{
               color: location.pathname === '/docs' ? '#30B4C2' : '#E6EDF3',
               borderColor: '#30B4C2',
+              fontSize: { md: '0.8rem', lg: '0.875rem' },
+              px: { md: 1.5, lg: 2 },
               '&:hover': {
                 backgroundColor: 'rgba(48, 180, 194, 0.1)',
                 borderColor: '#30B4C2'
@@ -86,9 +95,12 @@ const Header = () => {
             component={Link}
             to="/about"
             variant={location.pathname === '/about' ? 'contained' : 'outlined'}
+            size="small"
             sx={{
               color: location.pathname === '/about' ? '#30B4C2' : '#E6EDF3',
               borderColor: '#30B4C2',
+              fontSize: { md: '0.8rem', lg: '0.875rem' },
+              px: { md: 1.5, lg: 2 },
               '&:hover': {
                 backgroundColor: 'rgba(48, 180, 194, 0.1)',
                 borderColor: '#30B4C2'
@@ -97,53 +109,54 @@ const Header = () => {
           >
             About
           </Button>
-          <IconButton
-            onClick={handleMenu}
-            sx={{
-              color: '#E6EDF3',
-              '&:hover': {
-                backgroundColor: 'rgba(48, 180, 194, 0.1)',
-                color: '#30B4C2'
-              }
-            }}
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            PaperProps={{
-              sx: {
-                backgroundColor: 'rgba(13, 17, 23, 0.95)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(48, 180, 194, 0.2)',
-                '& .MuiMenuItem-root': {
-                  color: '#E6EDF3',
-                  '&:hover': {
-                    backgroundColor: 'rgba(48, 180, 194, 0.1)',
-                    color: '#30B4C2'
-                  }
+        </Box>
+        <IconButton
+          onClick={handleMenu}
+          sx={{
+            display: { xs: 'block', lg: 'none' },
+            color: '#E6EDF3',
+            '&:hover': {
+              backgroundColor: 'rgba(48, 180, 194, 0.1)',
+              color: '#30B4C2'
+            }
+          }}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            sx: {
+              backgroundColor: 'rgba(13, 17, 23, 0.95)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(48, 180, 194, 0.2)',
+              '& .MuiMenuItem-root': {
+                color: '#E6EDF3',
+                '&:hover': {
+                  backgroundColor: 'rgba(48, 180, 194, 0.1)',
+                  color: '#30B4C2'
                 }
               }
-            }}
-          >
-            {pages.map((page) => (
-              <MenuItem
-                key={page.path}
-                component={Link}
-                to={page.path}
-                onClick={handleClose}
-                sx={{
-                  backgroundColor: location.pathname === page.path ? 'rgba(48, 180, 194, 0.1)' : 'transparent',
-                  color: location.pathname === page.path ? '#30B4C2' : '#E6EDF3'
-                }}
-              >
-                {page.name}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
+            }
+          }}
+        >
+          {pages.map((page) => (
+            <MenuItem
+              key={page.path}
+              component={Link}
+              to={page.path}
+              onClick={handleClose}
+              sx={{
+                backgroundColor: location.pathname === page.path ? 'rgba(48, 180, 194, 0.1)' : 'transparent',
+                color: location.pathname === page.path ? '#30B4C2' : '#E6EDF3'
+              }}
+            >
+              {page.name}
+            </MenuItem>
+          ))}
+        </Menu>
       </Toolbar>
     </AppBar>
   );

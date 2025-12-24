@@ -8,10 +8,19 @@ import os
 import numpy as np
 import io
 import pandas as pd
-import torch
 import json
 import asyncio
-from models import FullModel
+
+# Optional torch import for deployment
+try:
+    import torch
+    from models import FullModel
+    TORCH_AVAILABLE = True
+except ImportError:
+    print("Warning: PyTorch not available. AI model functionality will be disabled.")
+    TORCH_AVAILABLE = False
+    torch = None
+    FullModel = None
 
 app = FastAPI()
 
@@ -43,22 +52,26 @@ async def serve_react_app_middleware(request, call_next):
 MODEL_PATH = 'nasa_model.pth'
 SEQ_LEN = 201
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
 # Initialize model with error handling for deployment
 model = None
-try:
-    if os.path.exists(MODEL_PATH):
-        model = FullModel(seq_len=SEQ_LEN, n_tab_features=13, catalog_only=True)  # 13 features for NASA catalog
-        model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
-        model.to(device)
-        model.eval()
-        print("Model loaded successfully")
-    else:
-        print(f"Warning: Model file {MODEL_PATH} not found. Prediction endpoints will not work.")
-except Exception as e:
-    print(f"Error loading model: {e}")
-    model = None
+device = None
+
+if TORCH_AVAILABLE:
+    try:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if os.path.exists(MODEL_PATH):
+            model = FullModel(seq_len=SEQ_LEN, n_tab_features=13, catalog_only=True)  # 13 features for NASA catalog
+            model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+            model.to(device)
+            model.eval()
+            print("Model loaded successfully")
+        else:
+            print(f"Warning: Model file {MODEL_PATH} not found. Prediction endpoints will not work.")
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        model = None
+else:
+    print("PyTorch not available - running in demo mode without AI predictions")
 
 @app.get("/")
 async def serve_react_app():
@@ -192,8 +205,8 @@ async def predict_csv(file: UploadFile = File(...)):
             return {"error": f"Missing required columns for prediction: {missing_required}. Available columns: {list(df.columns)}"}
 
         # Check if model is loaded
-        if model is None:
-            return {"error": "AI model not loaded. Please ensure model files are available."}
+        if model is None or not TORCH_AVAILABLE:
+            return {"error": "AI model not available. PyTorch is not installed or model files are missing."}
 
         print(f"Processing {len(df)} candidates for prediction")
 
@@ -263,10 +276,10 @@ async def websocket_endpoint(websocket: WebSocket):
                 candidate_data = json_data.get('candidate', {})
 
                 # Check if model is loaded
-                if model is None:
+                if model is None or not TORCH_AVAILABLE:
                     error_result = {
                         'status': 'error',
-                        'message': 'AI model not loaded'
+                        'message': 'AI model not available - PyTorch not installed'
                     }
                     await manager.send_personal_message(json.dumps(error_result), websocket)
                     continue
@@ -329,10 +342,10 @@ async def websocket_stream(websocket: WebSocket):
                     results = []
                     for candidate in candidates:
                         # Check if model is loaded
-                        if model is None:
+                        if model is None or not TORCH_AVAILABLE:
                             results.append({
                                 'id': candidate.get('id', 'unknown'),
-                                'error': 'AI model not loaded'
+                                'error': 'AI model not available - PyTorch not installed'
                             })
                             continue
 

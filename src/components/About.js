@@ -78,7 +78,7 @@ const About = () => {
           backgroundImage: 'linear-gradient(0deg, rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0) 50%), url("https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=1200&h=400&fit=crop")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '320px',
+          minHeight: { xs: '250px', md: '320px' },
           display: 'flex',
           alignItems: 'flex-end'
         }}>

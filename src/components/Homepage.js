@@ -97,7 +97,7 @@ const Homepage = () => {
                   Advanced machine learning platform for exoplanet detection using NASA data.
                   Upload CSV files, connect real-time, and get instant AI-powered predictions.
                 </Typography>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ width: '100%' }}>
                   <Button
                     component={Link}
                     to="/dashboard"
@@ -111,7 +111,8 @@ const Homepage = () => {
                       },
                       px: 4,
                       py: 2,
-                      fontSize: '1.1rem'
+                      fontSize: '1.1rem',
+                      width: { xs: '100%', sm: 'auto' }
                     }}
                   >
                     Launch Dashboard
@@ -130,7 +131,8 @@ const Homepage = () => {
                       },
                       px: 4,
                       py: 2,
-                      fontSize: '1.1rem'
+                      fontSize: '1.1rem',
+                      width: { xs: '100%', sm: 'auto' }
                     }}
                   >
                     Learn More
@@ -279,7 +281,7 @@ const Homepage = () => {
                 Join thousands of researchers using our AI-powered platform to analyze exoplanet candidates.
                 Upload your data or connect real-time for instant results.
               </Typography>
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} justifyContent="center">
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} justifyContent="center" sx={{ width: '100%' }}>
                 <Button
                   component={Link}
                   to="/dashboard"
@@ -291,9 +293,10 @@ const Homepage = () => {
                     '&:hover': {
                       background: 'linear-gradient(45deg, #2A9BA8 30%, #E69500 90%)'
                     },
-                    px: 6,
+                    px: { xs: 4, sm: 6 },
                     py: 2,
-                    fontSize: '1.1rem'
+                    fontSize: '1.1rem',
+                    width: { xs: '100%', sm: 'auto' }
                   }}
                 >
                   Get Started Now
@@ -311,9 +314,10 @@ const Homepage = () => {
                       backgroundColor: 'rgba(48, 180, 194, 0.1)',
                       borderColor: '#30B4C2'
                     },
-                    px: 6,
+                    px: { xs: 4, sm: 6 },
                     py: 2,
-                    fontSize: '1.1rem'
+                    fontSize: '1.1rem',
+                    width: { xs: '100%', sm: 'auto' }
                   }}
                 >
                   Contact Us
@@ -330,9 +334,10 @@ const Homepage = () => {
                       backgroundColor: 'rgba(48, 180, 194, 0.1)',
                       borderColor: '#30B4C2'
                     },
-                    px: 6,
+                    px: { xs: 4, sm: 6 },
                     py: 2,
-                    fontSize: '1.1rem'
+                    fontSize: '1.1rem',
+                    width: { xs: '100%', sm: 'auto' }
                   }}
                 >
                   View Documentation

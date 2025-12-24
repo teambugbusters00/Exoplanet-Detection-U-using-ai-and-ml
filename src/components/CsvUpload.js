@@ -81,7 +81,7 @@ const CsvUpload = ({ onUpload, disabled }) => {
             <Paper
               {...getRootProps()}
               sx={{
-                p: 4,
+                p: { xs: 2, md: 4 },
                 textAlign: 'center',
                 cursor: disabled ? 'not-allowed' : 'pointer',
                 border: '2px dashed',

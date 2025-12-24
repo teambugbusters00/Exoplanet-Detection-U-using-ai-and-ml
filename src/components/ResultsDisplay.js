@@ -143,9 +143,9 @@ const ResultsDisplay = ({ predictions }) => {
 
           {/* Charts */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
-            <Grid item xs={12} lg={8}>
+            <Grid item xs={12} md={8}>
               <Paper sx={{
-                p: 3,
+                p: { xs: 2, md: 3 },
                 background: 'rgba(13, 17, 23, 0.5)',
                 border: '1px solid rgba(48, 180, 194, 0.2)'
               }}>
@@ -162,6 +162,7 @@ const ResultsDisplay = ({ predictions }) => {
                       angle={-45}
                       textAnchor="end"
                       height={80}
+                      interval={0}
                     />
                     <YAxis stroke="#90b7cb" />
                     <Tooltip
@@ -177,23 +178,23 @@ const ResultsDisplay = ({ predictions }) => {
               </Paper>
             </Grid>
 
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} md={4}>
               <Paper sx={{
-                p: 3,
+                p: { xs: 2, md: 3 },
                 background: 'rgba(13, 17, 23, 0.5)',
                 border: '1px solid rgba(48, 180, 194, 0.2)'
               }}>
                 <Typography variant="h6" gutterBottom>
                   Probability Categories
                 </Typography>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie
                       data={pieData}
                       cx="50%"
                       cy="50%"
-                      innerRadius={60}
-                      outerRadius={100}
+                      innerRadius={40}
+                      outerRadius={80}
                       paddingAngle={5}
                       dataKey="value"
                     >
