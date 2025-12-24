@@ -271,7 +271,7 @@ const Documentation = () => {
                 '& .MuiAlert-icon': { color: '#30B4C2' }
               }}>
                 <Typography variant="body2">
-                  <strong>Base URL:</strong> http://localhost:8000<br />
+                  <strong>Base URL:</strong> {process.env.REACT_APP_API_URL || 'http://localhost:8000'}<br />
                   All API endpoints support CORS and are accessible from the web interface.
                 </Typography>
               </Alert>

@@ -51,7 +51,9 @@ const RealTimeAnalyzer = ({ onPrediction, onConnectionChange, disabled }) => {
 
   const connectWebSocket = () => {
     try {
-      const ws = new WebSocket('ws://localhost:8000/ws');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const wsUrl = apiUrl.replace(/^http/, 'ws');
+      const ws = new WebSocket(`${wsUrl}/ws`);
       wsRef.current = ws;
 
       ws.onopen = () => {

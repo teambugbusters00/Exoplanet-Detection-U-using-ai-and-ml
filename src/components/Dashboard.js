@@ -36,7 +36,7 @@ const Dashboard = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/predict_csv', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8000'}/predict_csv`, {
         method: 'POST',
         body: formData,
       });
