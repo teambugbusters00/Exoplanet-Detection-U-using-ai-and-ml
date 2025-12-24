@@ -1,12 +1,19 @@
 services:
-  # Backend API Service
+  # Unified Full-Stack Service (Backend + Frontend)
   - type: web
-    name: nasa-exoplanet-backend
+    name: nasa-exoplanet-fullstack
     env: python
     buildCommand: |
+      # Install Python dependencies
       python --version &&
       python -m pip install --upgrade pip &&
-      pip install -r requirements.txt
+      pip install -r requirements.txt &&
+
+      # Install Node.js and build React frontend
+      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
+      apt-get install -y nodejs &&
+      npm install &&
+      npm run build
     startCommand: python api_predict.py
     autoDeploy: false
     healthCheckPath: /
@@ -17,19 +24,3 @@ services:
       name: model-storage
       mountPath: /opt/render/project/src
       sizeGB: 1
-
-  # Frontend React Service
-  - type: web
-    name: nasa-exoplanet-frontend
-    env: node
-    buildCommand: |
-      npm install &&
-      npm run build
-    startCommand: npm start
-    autoDeploy: false
-    healthCheckPath: /
-    envVars:
-      - key: NODE_VERSION
-        value: 18.17.0
-      - key: REACT_APP_API_URL
-        value: https://nasa-exoplanet-backend.onrender.com
